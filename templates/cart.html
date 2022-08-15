@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} My cart{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+      <div class="row py-5 p-4  rounded">
+
+
+        <div class="col-lg-8">
+
+<a class="btn btn-outline-dark" href=""><i class="fa fa-arrow-left" aria-hidden="true"></i> Continue Shopping</a><hr>
+                <!-- Shopping cart table -->
+                <div class="table-responsive">
+                  <table class="table">
+    
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border-0 " style="text-align: center;">
+                          <div class="p-2 px-3">Product</div>
+                        </th>
+                        <th scope="col" class="border-0 " style="text-align: center;">
+                          <div class="py-2">Price</div>
+                        </th>
+                        <th scope="col" class="border-0" style="text-align: center;">
+                          <div class="py-2">Quantity</div>
+                        </th>
+                        <th scope="col" class="border-0" style="text-align: center;">
+                            <div class="py-2">Subtotal</div>
+                          </th>
+                        <th scope="col" class="border-0" style="text-align: center;">
+                            <div class="py-2">Action</div>
+                          </th>
+                        <th scope="col" class="border-0" style="text-align: center;">
+                          <div class="py-2">Remove</div>
+                        </th>
+                      </tr>
+                    </thead>
+    
+                    <tbody>
+                      <tr>
+                        {% for item in items %}
+                        <th scope="row" class="border-0">
+                          <div class="p-2">
+                            <img src="" alt="" width="40" height="40" class="img-fluid rounded shadow-sm">
+                            <div class="ml-3 d-inline-block align-middle">
+                            <a href="" class="d-inline-block align-middle">{{item.product.name}}</a><span class="text-muted font-weight-normal font-italic d-block"></span>
+                            </div>
+                          </div>
+                        </th>
+    
+                        <td class="border-0 align-middle" style="text-align: center;" ><strong>₹{{item.product.selling_price}}</strong></td>
+                        <td class="border-0 align-middle " style="text-align: center;"><strong>{{item.quantity}}</strong></td>
+                        <td class="border-0 align-middle" style="text-align: center;">₹{{item.get_total}}</td>
+                        <td class="border-0 align-middle" style="text-align: center;">
+                            <a data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" href=""> <i class="fa fa-plus text-success" aria-hidden="true"></i> </a> &nbsp;&nbsp;
+                            <a data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" href=""> <i class="fa fa-minus text-primary" aria-hidden="true" ></i> </a>
+                        </td>
+                        <td class="border-0 align-middle" style="text-align: center;">
+                            <a data-product="{{item.product.id}}" data-action="removeall" class="chg-quantity update-cart" href=""> <i class="fa fa-trash" style="color:#ff3e3e"></i> </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+
+        </div>
+
+
+
+        <div class="col-lg-4" style="border: 1px solid rgb(30, 40, 58)">
+
+                  <div class="border border-white  px-4 py-3 text-uppercase font-weight-bold">Price Details</div>
+                  <div class="p-4">
+                    <p class="font-italic mb-4">Shipping and additional costs are free.</p>
+                    <ul class="list-unstyled mb-4">
+                      <li class="d-flex justify-content-between py-3"><strong class="text-muted1">Order Subtotal </strong><strong>₹{{cart.total}}</strong></li>
+                      <li class="d-flex justify-content-between py-3"><strong class="text-muted1">Delivery Charges</strong><strong>₹0.00</strong></li>
+                      <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted1">Tax</strong><strong>₹0.00</strong></li>
+                      <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted1">Total Amount </strong>
+                        <h5 class="font-weight-bold">₹{{order.get_cart_total}}</h5>
+                      </li>
+                      {% if cart.cartproduct_set.all %}
+                    </ul><a href="" class="btn btn-primary btn-lg btn-block">Place Order</a>
+                    {% endif %}
+                  </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+{% endblock %}

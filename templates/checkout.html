@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout {% endblock %}
+
+{% block content %}
+<div class="container">
+<br>
+    <div class="row py-5 p-4 bg-white rounded shadow-sm">
+
+      <div class="col-lg-6">    
+        <a class="btn btn-outline-dark" href=""><i class="fa fa-arrow-left" aria-hidden="true"></i> Update Cart</a><hr>
+                <div class="table-responsive">
+                  <table class="table">
+    
+                    <thead style="text-align: center;">
+                      <tr>
+                        <th scope="col" class="border-0 bg-light">
+                          <div class="p-2 px-3">SN</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                          <div class="py-2">Product</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-2">Rate</div>
+                          </th>
+                        <th scope="col" class="border-0 bg-light">
+                          <div class="py-2">Quantity</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                            <div class="py-2">Subtotal</div>
+                          </th>
+                      </tr>
+                    </thead>
+    
+                    <tbody style="text-align: center;">
+                      <tr>
+                        {% for cp in cart.cartproduct_set.all %}
+
+    
+                        <td class="border-0 align-middle" ><strong>{{forloop.counter}}</strong></td>
+                        <td class="border-0 align-middle" ><a href="" class="text-dark d-inline-block align-middle">{{cp.product.title}}</a></td>
+                        <td class="border-0 align-middle">₹{{cp.rate}}</td>
+                        <td class="border-0 align-middle">{{cp.quantity}}</td>
+                        <td class="border-0 align-middle">₹{{cp.subtotal}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold text-center">Total: <strong>₹{{cart.total}}  </strong> </div>
+                </div>
+      </div>
+
+
+        <div class="col-lg-6">           
+            <h3>Checkout Form</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary btn-lg btn-block mb-3 mt-4">Confirm Order</button>
+            </form>
+        </div>
+
+</div>
+
+
+
+{% endblock %}

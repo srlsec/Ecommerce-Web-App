@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="website-wrap">
+    <section>
+      <div class="ticker">
+        <p>
+          <a href="#">Shop online</a> and get free, contactless delivery,
+          Specialist help and more.
+        </p>
+      </div>
+    </section>
+    <main>
+      <div class="hero">
+        <div class="container1">
+          <div class="text">
+            <h1>Online Shopping Site for Mobiles, Electronics </h1>
+            <h3>
+              Lots to love. Less to spend. <br />
+              From £419.
+            </h3>
+            <p class="finance">From £11.62/mo. or £279 with trade-in.</p>
+            <button class="btn">
+              <a href="{% url 'allproducts' %}">View all products <i class="fas fa-angle-right"></i></a>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <section class="grid">
+      <div class="grid-container">
+
+        <div class="grid-item">
+          <div class="this-wrapper">
+            <div class="grid-text">
+              {% for category in categories %}
+              {% if categories.1 == category %}
+              <h2>Laptops</h2>
+              <p>The all-in-one for all.</p>
+              <button class="btn">
+                <a href="{% url 'category_products' category.slug %}">View all</a>
+              </button>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+            <img class="imac-img" src="../static/images/lap.png" alt="imac" />
+            <img class="imac-med" src="../static/images/lap-md.png" alt="imac" />
+            <img class="imac-sm" src="../static/images/lap-sm.png" alt="imac" />
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="this-wrapper">
+            <div class="grid-text">
+              
+              {% for category in categories %}
+              {% if categories.0 == category %}
+              <h2>Mobiles</h2>
+              <p>The all-in-one for all.</p>
+              <button class="btn">
+                <a href="{% url 'category_products' category.slug %}">View all</a>
+              </button>
+              {% endif %}
+              {% endfor %}
+            </div>
+            <img class="imac-img" src="../static/images/mob.png" alt="imac" />
+            <img class="imac-med" src="../static/images/mob-med.png" alt="imac" />
+            <img class="imac-sm" src="../static/images/mob-sm.png" alt="imac" />
+          </div>
+        </div>
+
+
+
+      </div>
+    </section>
+  </div>
+
+{% endblock %}
