@@ -1,4 +1,4 @@
-# Django E-commerce
+# MyStore - Django E-commerce
 
 This is a very simple e-commerce website built with Django.
 
